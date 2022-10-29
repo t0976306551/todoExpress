@@ -3,6 +3,7 @@ const db = require('../models');
 const todoModel = db.todo;
 
 const getHelloWord = (req, res) => {
+
     res.json({
         "message": "Hello World"
     })
@@ -10,15 +11,16 @@ const getHelloWord = (req, res) => {
 
 const getAllTodoDatas = (req, res) => {
     todoModel.findAll().then(data => {
+        res.header("Access-Control-Allow-Origin", "*");
         res.json({
             "message": "success",
             "data": data
         })
+
     }).catch(err => {
         res.status(500).send({
             "message": err.message,
             "status": 500
-
         });
     });
 }
