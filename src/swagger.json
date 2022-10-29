@@ -1,0 +1,170 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Todo API",
+        "description": "Simple RESTful API in Node.js with TypeScript",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "Local server"
+        }
+    ],
+    "apis": [
+        "../route/api/*.js"
+    ],
+    "paths": {
+        "/todo": {
+            "get": {
+                "tags": [
+                    "todo"
+                ],
+                "summary": "get all todo data",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "todo"
+                ],
+                "summary": "Create a new todo",
+                "requestBody": {
+                    "description": "Todo Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "todo"
+                ],
+                "summary": "update a todo data",
+                "requestBody": {
+                    "description": "Todo Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "todo"
+                ],
+                "summary": "delete a todo data",
+                "requestBody": {
+                    "description": "Todo Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data"
+                    }
+                }
+            }
+        },
+        "/todo/{id}": {
+            "get": {
+                "tags": [
+                    "todo"
+                ],
+                "summary": "get todo data by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id"
+                    }
+                ],
+                "required": true,
+                "description": "The todo id",
+                "schema": {
+                    "type": "integer"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data"
+                    }
+                }
+            }
+        }
+    }
+}
