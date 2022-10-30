@@ -3,7 +3,6 @@ const db = require('../models');
 const todoModel = db.todo;
 
 const getHelloWord = (req, res) => {
-
     res.json({
         "message": "Hello World"
     })
@@ -26,10 +25,12 @@ const getAllTodoDatas = (req, res) => {
 }
 
 const createTodoData = (req, res) => {
+    console.log(req);
     const sqlData = {
         name: req.body.name,
     };
     todoModel.create(sqlData).then(data => {
+        res.header("Access-Control-Allow-Origin", "*");
         res.json({
             "message": "success",
         })
@@ -62,7 +63,7 @@ const deleteTodoData = (req, res) => {
     const todo_id = req.body.id;
     todoModel.destroy({ where: { id: todo_id } }).then(data => {
         res.json({
-            "message": "delete success",
+            "message": "success",
         })
     }).catch(err => {
         res.status(500).send({
@@ -83,7 +84,6 @@ const getTodoData = (req, res) => {
         res.status(500).send({
             "message": err.message,
             "status": 500
-
         });
     });
 }
